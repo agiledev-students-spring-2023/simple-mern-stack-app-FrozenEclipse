@@ -22,6 +22,16 @@ mongoose
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
 
+//a route to handle fetching about me from backend
+app.get('/AboutUs', async (req, res) => {
+  res.json({
+    image:"https://frozeneclipse.github.io/image/imgme.png",
+    paragraph: ["Hello! My name is Jeffrey. I'm currently a Junior at CAS pursuing a BA in Computer Science.  ", 
+    "I'm interested in doing Software Development! I'm currently leetcoding and still looking for internship opportunities!  ",
+    "Have a really badly photoshopped picture of me I made for my Intro to Web Development Class!  "],
+  })
+})
+
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
   // load all messages from database

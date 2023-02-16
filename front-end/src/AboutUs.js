@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 import './AboutUs.css'
 
 /**
@@ -7,12 +8,24 @@ import './AboutUs.css'
  * @returns The contents of this component, in JSX form.
  */
 const AboutUs = props => {
+  const [about, setabout] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:5002/AboutUs')
+    .then(res => res.json())
+    .then(data => {
+      setabout(data);
+    })
+    .catch(err => {
+      console.log(err)
+    });
+  }, [])
+
   return (
     <>
       <h1>About Me</h1>
-      <p>Hello! My name is Jeffrey.  <br />I'm currently a Junior at CAS pursuing a BA in Computer Science.  <br />I'm interested in doing Software Development!  <br />I'm currently leetcoding and still looking for internship opportunities!  <br />Have a really badly photoshopped picture of me I made for my Intro to Web Development Class! </p>
-      <img src="https://frozeneclipse.github.io/image/imgme.png" alt="picture of myself"/>
-      <p>(This is currently completely in the front-end but will convert to back-end in the future).</p>
+      <p>{about.paragraph}</p>
+      <img src={about.image} alt="picture of myself"/>
+      {/* <p>(This is currently completely in the front-end but will convert to back-end in the future).</p> */}
 
     </>
   )
